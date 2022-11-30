@@ -1,7 +1,7 @@
 import React from "react";
 
 const Mytodos = (props:any) => {
-    const {onCancel,onSave,ondelete,todoList} = props;
+    const {onCancel,onSave,ondelete,todoList,onchanges} = props;
     
   return (
       <div className="xl:w-[50rem] 2xl:w-[50rem] m-auto">
@@ -11,7 +11,9 @@ const Mytodos = (props:any) => {
               type="checkbox"
               className="rounded-full border-none"
               id="chekbox"
+              value={todoList.complete_status}
               defaultChecked={todoList.complete_status}
+              onChange={()=>onchanges(todoList.complete_status,todoList._id)}
             />
           </div>
           <div className="col-span-8" id="editmode">

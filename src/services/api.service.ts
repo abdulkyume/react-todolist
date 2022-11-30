@@ -53,4 +53,12 @@ export default class apiservice {
     });
     return rbool;
   }
+
+  async updateTodoList(data: any) {
+    const url = `${this.baseUri}/updateTodoList`;
+    const rbool = axios.post(url, data).then((response) => {
+      return response.data;
+    });
+    return rbool;
+  }
 }

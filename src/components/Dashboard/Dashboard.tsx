@@ -92,6 +92,9 @@ const Dashboard = () => {
   const ondelete = (e: any) => {
     ApiService.delTodoList({ id: user._id, room_id: e });
   };
+  const onchanges = (e: any,tdolist:any) => {
+    ApiService.updateTodoList({ id: user._id, tdlist:tdolist, cmp_status: !e });
+  };
   const logOut = () => {
     localStorage.removeItem("user");
     localStorage.clear();
@@ -140,6 +143,7 @@ const Dashboard = () => {
                 fonCancel={fonCancel}
                 onCancel={onCancel}
                 ondelete={ondelete}
+                onchanges={onchanges}
                 key={todoList._id}
               />
             );

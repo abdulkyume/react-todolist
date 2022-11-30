@@ -72,4 +72,22 @@ apiRoute.route("/delTodoList").post((req, res, next) => {
     }
   );
 });
+
+// update TodoList
+apiRoute.route("/updateTodoList").post((req, res, next) => {
+  todoList.updateOne(
+    {
+      todoList: { $elemMatch: { 'todoList._id': req.body.tdlist }}
+    },
+    { $set: { 'todoList.$.complete_status':req.body.cmp_status } },
+    (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        console.log(data)
+        res.json(data);
+      }
+    }
+  );
+});
 module.exports = apiRoute;
