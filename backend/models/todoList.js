@@ -10,7 +10,6 @@ let users = new Schema({
       description: { type: String },
       time: { type: Date },
       complete_status: { type: Boolean },
-      repeat_status: { type: Boolean },
     }
   ],
 });

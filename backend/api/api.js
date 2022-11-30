@@ -32,19 +32,24 @@ apiRoute.route("/login").post((req, res, next) => {
   });
 });
 
-// Get All Employees
-apiRoute.route("/").get((req, res, next) => {
-  todoList.find((error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.json(data);
+// addTodoList
+apiRoute.route("/addTodoList").post((req, res, next) => {
+  todoList.updateOne(
+    { _id: req.body.id },
+    { $push: { todoList: req.body.todolist } },
+    (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.json(data);
+      }
     }
-  });
+  );
 });
-// Get single employee
-apiRoute.route("/read/:id").get((req, res, next) => {
-  todoList.findById(req.params.id, (error, data) => {
+
+// getTodoList
+apiRoute.route("/getTodoList").post((req, res, next) => {
+  todoList.find(req.body, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -53,34 +58,18 @@ apiRoute.route("/read/:id").get((req, res, next) => {
   });
 });
 
-// Update employee
-apiRoute.route("/update/:id").put((req, res, next) => {
-  todoList.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: req.body,
-    },
+// Delete TodoList
+apiRoute.route("/delTodoList").post((req, res, next) => {
+  todoList.updateOne(
+    { _id: req.body.id },
+    { $pull: { todoList: { _id: req.body.room_id } } },
     (error, data) => {
       if (error) {
         return next(error);
-        console.log(error);
       } else {
         res.json(data);
-        console.log("Data updated successfully");
       }
     }
   );
-});
-// Delete employee
-apiRoute.route("/delete/:id").delete((req, res, next) => {
-  todoList.findOneAndRemove(req.params.id, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.status(200).json({
-        msg: data,
-      });
-    }
-  });
 });
 module.exports = apiRoute;

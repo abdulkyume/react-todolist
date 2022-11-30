@@ -44,6 +44,7 @@ const LogIn = () => {
 
     ApiService.logIn(formvalue).then((response) => {
       if (Object.keys(response).length > 0) {
+        localStorage.setItem("user", JSON.stringify(response[0]));
         navigate("/Dashboard");
       }
       else{

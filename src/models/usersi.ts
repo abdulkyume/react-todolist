@@ -7,6 +7,5 @@ export default interface useri {
     description: String;
     time: Date;
     complete_status: boolean;
-    repeat_status: boolean;
   }[];
 }

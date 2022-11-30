@@ -29,4 +29,28 @@ export default class apiservice {
     });
     return rbool;
   }
+
+  async geTodoList(data: any) {
+    const url = `${this.baseUri}/getTodoList`;
+    const rbool = axios.post(url, data).then((response) => {
+      return response.data;
+    });
+    return rbool;
+  }
+
+  async addTodoList(data: any) {
+    const url = `${this.baseUri}/addTodoList`;
+    const rbool = axios.post(url, data).then((response) => {
+      return response.data;
+    });
+    return rbool;
+  }
+
+  async delTodoList(data: any) {
+    const url = `${this.baseUri}/delTodoList`;
+    const rbool = axios.post(url, data).then((response) => {
+      return response.data;
+    });
+    return rbool;
+  }
 }
